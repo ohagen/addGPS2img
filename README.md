@@ -10,7 +10,7 @@
 
 # addGPS_interactive.bat
 
-An interactive Windows batch script that processes all JPEG images in a folder and adds GPS coordinates to those images that do not already have GPS metadata. The script prompts you to enter a folder path and comma-separated GPS coordinates (e.g., `-23.21140901769295, -47.52262398250084`). It automatically determines the proper GPS Latitude/Longitude Ref (N/S, E/W) based on the sign of the coordinates.
+An interactive Windows batch script that processes all images and movies in a folder and adds GPS coordinates to those images that do not already have GPS metadata. The script prompts you to enter a folder path and comma-separated GPS coordinates (e.g., `-23.21140901769295, -47.52262398250084`). It automatically determines the proper GPS Latitude/Longitude Ref (N/S, E/W) based on the sign of the coordinates.
 
 This tool is especially useful if you are uploading photos stored in folders to the cloud (for example, Google Photos) and need to ensure that every image contains location metadata.
 
@@ -22,7 +22,7 @@ This tool is especially useful if you are uploading photos stored in folders to 
 - **Automatic Derivation:**  
   - Automatically derive and add the correct GPS Latitude Ref (`N`/`S`) and GPS Longitude Ref (`E`/`W`) based on the sign.
 - **Batch Processing:**  
-  - Iterates through all JPEG/JPEG images in the specified folder.
+  - Iterates through all media files in the specified folder.
   - Skips images that already have GPS data.
 - **Looping Control:**  
   - Once processing is complete, you can press **C** to process another folder or **Q** to quit.
@@ -62,7 +62,7 @@ Tip:
 To easily get these coordinates, open Google Maps, right-click on the desired location. The coordinates will appear in the required format, just click it (this will coppy it automatically)
 
 5. Processing:
-The script processes every .jpg and .jpeg file in the specified folder:
+The script processes every media files (i.e. *.jpg *.jpeg *.CR2 *.png *.tiff *.tif *.bmp *.gif *.raw *.nef *.arw *.hdr *.orf *.rw2 *.pef *.dng *.sr2 *.srw *.m4v *.mov *.mp4 *.avi *.wmf *.flv *.mkv *.mpeg *.3gp) in the specified folder:
 
 - If the file does not contain GPS data, the script adds the specified coordinates (using the absolute values and derived N/S or E/W references).
 - If the file already contains GPS data, it skips that file.
@@ -75,7 +75,7 @@ Press C to continue with another folder, or Q to quit:
 ```
 ## Customization
 File Extensions:
-To process additional file types (for example, PNG), modify the for loop pattern (*.jpg *.jpeg) in the script.
+To process additional file types, modify the for loop pattern (*.jpg *.jpeg ...) in the script.
 
 ExifTool Options:
 Adjust the ExifTool command-line options in the script if needed. For example to avoid overwriting
