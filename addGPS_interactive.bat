@@ -3,6 +3,31 @@ setlocal EnableDelayedExpansion
 
 :MainLoop
 cls
+
+
+:: Display ASCII Logo and Information
+echo    :::     :::::::::  :::::::::   ::::::::  :::::::::   ::::::::    ::::::::   ::::::::::: ::::    ::::   ::::::::  
+echo  :+: :+:   :+:    :+: :+:    :+: :+:    :+: :+:    :+: :+:    :+:  :+:    :+:      :+:     +:+:+: :+:+:+ :+:    :+: 
+echo  +:+   +:+  +:+    +:+ +:+    +:+ +:+        +:+    +:+ +:+               +:+       +:+     +:+ +:+:+ +:+ +:+        
+echo +#++:++#++: +#+    +:+ +#+    +:+ :#:        +#++:++#+  +#++:++#++      +#+         +#+     +#+  +:+  +#+ :#:        
+echo +#+     +#+ +#+    +#+ +#+    +#+ +#+   +#+# +#+               +#+    +#+           +#+     +#+       +#+ +#+   +#+# 
+echo +#+     #+# #+#    #+# #+#    #+# #+#    #+# #+#        #+#    #+#   #+#            #+#     #+#       #+# #+#    #+# 
+echo ###     ### #########  #########   ########  ###         ########   ##########  ########### ###       ###  ########   
+echo.
+echo --------------------------------------------------------------
+echo This interactive script adds GPS coordinates to image files.
+echo It prompts for a folder path and a comma-separated coordinate pair,
+echo automatically deriving the correct GPS Latitude/Longitude References.
+echo.
+echo Licensed under the MIT License.
+echo For commercial use or support, please contact oskar@hagen.bio.
+echo Provided AS IS without any warranty.
+echo -------------------------------------------------------------- 
+echo.
+
+
+
+
 :: Prompt for the folder path
 set /p folder="Enter the folder path containing your images: "
 if not exist "%folder%" (
@@ -46,7 +71,7 @@ echo Using GPS Latitude: %latVal% (%latRef%) and Longitude: %lonVal% (%lonRef%)
 echo.
 
 pushd "%folder%"
-for %%F in (*.jpg *.jpeg) do (
+for %%F in (*.jpg *.jpeg *.CR2 *.png *.tiff *.tif *.bmp *.gif *.raw *.nef *.arw *.hdr *.orf *.rw2 *.pef *.dng *.sr2 *.srw *.m4v *.mov *.mp4 *.avi *.wmf *.flv *.mkv *.mpeg *.3gp) do (
     echo Checking "%%F"...
     rem Check if the file already contains GPS data
     exiftool -GPSLatitude "%%F" | findstr /i "GPS Latitude" >nul
