@@ -1,3 +1,13 @@
+    :::     :::::::::  :::::::::   ::::::::  :::::::::   ::::::::    ::::::::   ::::::::::: ::::    ::::   ::::::::  
+  :+: :+:   :+:    :+: :+:    :+: :+:    :+: :+:    :+: :+:    :+:  :+:    :+:      :+:     +:+:+: :+:+:+ :+:    :+: 
+ +:+   +:+  +:+    +:+ +:+    +:+ +:+        +:+    +:+ +:+               +:+       +:+     +:+ +:+:+ +:+ +:+        
++#++:++#++: +#+    +:+ +#+    +:+ :#:        +#++:++#+  +#++:++#++      +#+         +#+     +#+  +:+  +#+ :#:        
++#+     +#+ +#+    +#+ +#+    +#+ +#+   +#+# +#+               +#+    +#+           +#+     +#+       +#+ +#+   +#+# 
+#+#     #+# #+#    #+# #+#    #+# #+#    #+# #+#        #+#    #+#   #+#            #+#     #+#       #+# #+#    #+# 
+###     ### #########  #########   ########  ###         ########   ##########  ########### ###       ###  ########  
+
+
+
 # addGPS_interactive.bat
 
 An interactive Windows batch script that processes all JPEG images in a folder and adds GPS coordinates to those images that do not already have GPS metadata. The script prompts you to enter a folder path and comma-separated GPS coordinates (e.g., `-23.21140901769295, -47.52262398250084`). It automatically determines the proper GPS Latitude/Longitude Ref (N/S, E/W) based on the sign of the coordinates.
