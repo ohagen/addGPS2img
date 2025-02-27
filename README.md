@@ -77,7 +77,7 @@ Open Source License:
 For non-commercial use, this code is released under the MIT License.
 
 Commercial License:
-If you wish to use this code for commercial purposes, require additional support, or need customization rights, please contact me at oskar@hagen.bio. A formal commercial license agreement can be arranged upon inquiry.
+If you wish to use this code for commercial purposes, require additional support, or need customization rights, please [contact me](mailto:oskar@hagen.bio). A formal commercial license agreement can be arranged upon inquiry.
 
 ### License
 Please refer to the LICENSE file for complete licensing details.
