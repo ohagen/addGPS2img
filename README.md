@@ -26,7 +26,7 @@ This tool is especially useful if you are uploading photos stored in folders to 
   ExifTool is a powerful command‑line utility for reading and writing metadata.  
   - **Installation Instructions:**  
     1. Visit the [ExifTool website](https://exiftool.org/) and download the Windows executable (typically named `exiftool(-k).exe`).
-    2. Rename the file to `exiftool.exe` (if desired) and place it in a directory that is included in your system's PATH.
+    2. Rename the file to `exiftool.exe` and place it in a directory that is included in your system's PATH.
     3. To verify installation, open Command Prompt and run:
        ```batch
        exiftool -ver
