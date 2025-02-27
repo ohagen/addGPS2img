@@ -88,7 +88,7 @@ If you encounter any issues or have feature requests, please open an issue in th
 - Pull Requests:
 Contributions are welcome! Fork the repository and submit a pull request.
 - Commercial Inquiries:
-For commercial licensing or support, please email us at oskar@hagen.bio.
+For commercial licensing or support, please [email me](oskar@hagen.bio).
 
 ## Disclaimer
 This script is provided "as is" without any warranty. Use it at your own risk. The author is not liable for any data loss or damage resulting from the use of this script.
