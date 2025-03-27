@@ -36,6 +36,14 @@ if not exist "%folder%" (
     goto MainLoop
 )
 
+:: Ask if the user wants to include subfolders
+set /p includeSubfolders="Include subfolders? (Press Enter for Yes, type 'n' for No): "
+if /i "%includeSubfolders%"=="n" (
+    set "searchOption="
+) else (
+    set "searchOption=/R"
+)
+
 :: Prompt for comma-separated GPS coordinates (lat, long)
 set /p coords="Enter GPS coordinates (lat, long): "
 
@@ -71,7 +79,7 @@ echo Using GPS Latitude: %latVal% (%latRef%) and Longitude: %lonVal% (%lonRef%)
 echo.
 
 pushd "%folder%"
-for %%F in (*.jpg *.jpeg *.CR2 *.png *.tiff *.tif *.bmp *.gif *.raw *.nef *.arw *.hdr *.orf *.rw2 *.pef *.dng *.sr2 *.srw *.m4v *.mov *.mp4 *.avi *.wmf *.flv *.mkv *.mpeg *.3gp) do (
+for %searchOption% %%F in (*.jpg *.jpeg *.CR2 *.png *.tiff *.tif *.bmp *.gif *.raw *.nef *.arw *.hdr *.orf *.rw2 *.pef *.dng *.sr2 *.srw *.m4v *.mov *.mp4 *.avi *.wmf *.flv *.mkv *.mpeg *.3gp) do (
     echo Checking "%%F"...
     rem Check if the file already contains GPS data
     exiftool -GPSLatitude "%%F" | findstr /i "GPS Latitude" >nul
