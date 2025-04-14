@@ -4,7 +4,6 @@ setlocal EnableDelayedExpansion
 :MainLoop
 cls
 
-
 :: Display ASCII Logo and Information
 echo    :::     :::::::::  :::::::::   ::::::::  :::::::::   ::::::::    ::::::::   ::::::::::: ::::    ::::   ::::::::  
 echo  :+: :+:   :+:    :+: :+:    :+: :+:    :+: :+:    :+: :+:    :+:  :+:    :+:      :+:     +:+:+: :+:+:+ :+:    :+: 
@@ -22,31 +21,40 @@ echo.
 echo Licensed under the MIT License.
 echo For commercial use or support, please contact oskar@hagen.bio.
 echo Provided AS IS without any warranty.
-echo -------------------------------------------------------------- 
+echo --------------------------------------------------------------
 echo.
 
-
-
-
-:: Prompt for the folder path
+:: ============================ [CHANGED] ============================
+:: Prompt for all user inputs at once
+echo Please enter all required information below:
 set /p folder="Enter the folder path containing your images: "
+set /p includeSubfolders="Include subfolders? (Press Enter for Yes, type 'n' for No): "
+set /p coords="Enter GPS coordinates (lat, long): "
+
+:: Validate folder path immediately
 if not exist "%folder%" (
     echo Folder "%folder%" does not exist.
     pause
-    goto MainLoop
+    exit /b 1
 )
 
-:: Ask if the user wants to include subfolders
-set /p includeSubfolders="Include subfolders? (Press Enter for Yes, type 'n' for No): "
+:: ============================ [CHANGED] ============================
+:: Summary confirmation before processing
+cls
+echo Summary of your entries:
+echo.
+echo Folder: %folder%
 if /i "%includeSubfolders%"=="n" (
-    set "searchOption="
+    echo Include Subfolders: No
 ) else (
-    set "searchOption=/R"
+    echo Include Subfolders: Yes
 )
+echo GPS Coordinates (raw): %coords%
+echo.
+pause
+:: ================================================================
 
-:: Prompt for comma-separated GPS coordinates (lat, long)
-set /p coords="Enter GPS coordinates (lat, long): "
-
+:: Pre-process the coordinates
 :: Remove any spaces from the input
 set "coords=%coords: =%"
 
@@ -74,14 +82,23 @@ if "%lon:~0,1%"=="-" (
     set "lonVal=%lon%"
 )
 
-echo.
-echo Using GPS Latitude: %latVal% (%latRef%) and Longitude: %lonVal% (%lonRef%)
+:: Determine search option based on subfolder inclusion
+if /i "%includeSubfolders%"=="n" (
+    set "searchOption="
+) else (
+    set "searchOption=/R"
+)
+
+:: Flatten the folder
+call flatten.bat "%folder%"
+echo Folder "%folder%" flattened.
 echo.
 
+:: Process images in the folder (and subfolders if selected)
 pushd "%folder%"
 for %searchOption% %%F in (*.jpg *.jpeg *.CR2 *.png *.tiff *.tif *.bmp *.gif *.raw *.nef *.arw *.hdr *.orf *.rw2 *.pef *.dng *.sr2 *.srw *.m4v *.mov *.mp4 *.avi *.wmf *.flv *.mkv *.mpeg *.3gp) do (
     echo Checking "%%F"...
-    rem Check if the file already contains GPS data
+    :: Check if the file already contains GPS data
     exiftool -GPSLatitude "%%F" | findstr /i "GPS Latitude" >nul
     if errorlevel 1 (
          echo   No GPS data found. Adding coordinates...
